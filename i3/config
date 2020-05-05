@@ -60,7 +60,7 @@ bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle-mu
 floating_modifier $defaultmod
 
 # start a terminal
-bindsym $defaultmod+Return exec alacritty # i3-sensible-terminal
+bindsym $defaultmod+Return exec kitty # i3-sensible-terminal
 
 # kill focused window
 bindsym $defaultmod+Shift+q kill
