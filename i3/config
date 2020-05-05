@@ -1,0 +1,309 @@
+# i3 config file (v4)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Variable setting
+set $defaultmod Mod4
+set $up i
+set $down k
+set $left j
+set $right l
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:Clear Sans 10
+
+########## Autolaunch ##########
+exec --no-startup-id nm-applet
+exec --no-startup-id /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1
+
+########## Keybindings ##########
+bindsym $defaultmod+Shift+s exec i3lock -c 000000 # Easier locking
+
+
+### Backlight ###
+# Note: If light doesn't work, install xbacklight and 1) uncomment the two lines below.
+# 2) Comment out the exec light lines.
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec light -A 10 # Increase Brightness
+bindsym XF86MonBrightnessDown exec light -U 10 # Decrease Brightness
+
+### Media Player ###
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioNext exec playerctl next
+
+### Other ###
+bindsym Print exec scrot -q 100
+
+### Sound ###
+# Raise Volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ && paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+# Lower Volume
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- && paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle-mute # Toggle muting
+
+# Use Mouse+$defaultmod to drag floating windows to their wanted position
+floating_modifier $defaultmod
+
+# start a terminal
+bindsym $defaultmod+Return exec alacritty # i3-sensible-terminal
+
+# kill focused window
+bindsym $defaultmod+Shift+q kill
+
+# start rofi (a program launcher)
+bindsym $defaultmod+d exec rofi -show drun -show-icons -drun-icon-theme Paper -theme Arc-Dark
+
+# change focus
+bindsym $defaultmod+$left focus left
+bindsym $defaultmod+$down focus down
+bindsym $defaultmod+$up focus up
+bindsym $defaultmod+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $defaultmod+Left focus left
+bindsym $defaultmod+Down focus down
+bindsym $defaultmod+Up focus up
+bindsym $defaultmod+Right focus right
+
+# move focused window
+bindsym $defaultmod+Shift+$left move left
+bindsym $defaultmod+Shift+$down move down
+bindsym $defaultmod+Shift+$up move up
+bindsym $defaultmod+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym $defaultmod+Shift+Left move left
+bindsym $defaultmod+Shift+Down move down
+bindsym $defaultmod+Shift+Up move up
+
+# split in horizontal orientation
+bindsym $defaultmod+h split h
+
+# split in vertical orientation
+bindsym $defaultmod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $defaultmod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $defaultmod+s layout stacking
+bindsym $defaultmod+w layout tabbed
+bindsym $defaultmod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $defaultmod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $defaultmod+space focus mode_toggle
+
+# focus the parent container
+bindsym $defaultmod+a focus parent
+# focus_follows_mouse no
+
+# focus the child container
+#bindsym $defaultmod+d focus child
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $defaultmod+minus scratchpad show
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+
+# switch to workspace
+bindsym $defaultmod+1 workspace $ws1
+bindsym $defaultmod+2 workspace $ws2
+bindsym $defaultmod+3 workspace $ws3
+bindsym $defaultmod+4 workspace $ws4
+bindsym $defaultmod+5 workspace $ws5
+bindsym $defaultmod+6 workspace $ws6
+bindsym $defaultmod+7 workspace $ws7
+bindsym $defaultmod+8 workspace $ws8
+bindsym $defaultmod+9 workspace $ws9
+bindsym $defaultmod+0 workspace $ws10
+
+# Move focused container to workspace
+bindsym $defaultmod+Ctrl+1 move container to workspace $ws1
+bindsym $defaultmod+Ctrl+2 move container to workspace $ws2
+bindsym $defaultmod+Ctrl+3 move container to workspace $ws3
+bindsym $defaultmod+Ctrl+4 move container to workspace $ws4
+bindsym $defaultmod+Ctrl+5 move container to workspace $ws5
+bindsym $defaultmod+Ctrl+6 move container to workspace $ws6
+bindsym $defaultmod+Ctrl+7 move container to workspace $ws7
+bindsym $defaultmod+Ctrl+8 move container to workspace $ws8
+
+# Move to workspace with focused container
+bindsym $defaultmod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $defaultmod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $defaultmod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $defaultmod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $defaultmod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $defaultmod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $defaultmod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $defaultmod+Shift+8 move container to workspace $ws8; workspace $ws8
+
+# move container
+bindsym $defaultmod+z move workspace to output left
+bindsym $defaultmod+x move workspace to output right
+
+# Open applications on specific workspaces
+assign [class="Pale moon"] $ws1
+assign [class="Firefox"] $ws1
+assign [class="Alacritty"] $ws2
+assign [class="dolphin"] $ws3
+assign [class="Nautilus"] $ws3
+assign [class="Caja"] $ws3
+assign [class="Tor Browse"] $ws4
+assign [class="Veracrypt"] $ws5
+assign [class="KeePassXC"] $ws5
+
+# Open specific applications in floating mode
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [class="Calamares"] floating enable border normal
+for_window [class="Clipgrab"] floating enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="Lightdm-gtk-greeter-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Manjaro-hello"] floating enable
+for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [title="MuseScore: Play Panel"] floating enable
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Oblogout"] fullscreen enable
+for_window [class="octopi"] floating enable
+for_window [title="About Pale Moon"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="Simple-scan"] floating enable border normal
+for_window [class="(?i)System-config-printer.py"] floating enable border normal
+for_window [class="Skype"] floating enable border normal
+for_window [class="Thus"] floating enable border normal
+for_window [class="Timeset-gui"] floating enable border normal
+for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [class="Xfburn"] floating enable
+for_window [class="Veracrypt"] floating disable
+
+# reload the configuration file
+bindsym $defaultmod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $defaultmod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+ bindsym $defaultmod+Ctrl+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Set shut down, restart and locking features
+bindsym $defaultmod+Shift+e mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $defaultmod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $defaultmod+r mode "default"
+}
+
+bindsym $defaultmod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+# bar {
+#         status_command i3status
+#         position bottom
+# 
+#         colors {
+#             background #404552
+# 
+#             focused_workspace #3685e2 #3685e2 #fafafa
+#             active_workspace #5294e2 #5294e2 #fafafa
+#             inactive_workspace #404552 #404552 #fafafa
+#             urgent_workspace #ff5757 #ff5757 #fafafa
+#         }
+# }
+# 
+########## Styling ##########
+
+client.focused          #404552 #404552 #fafafa #ff5757 #fafafa
+client.focused_inactive #666666 #404552 #eeeeee #666666 #666666
+client.unfocused        #404552 #484b52 #eeeeee #ff5757 #404552
+client.urgent           #ff5757 #404552 #ffffff #555757 #404552
+client.background       #404552
+
+########## i3-gaps integration ##########
+
+for_window [class="^.*"] border pixel 5
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [title="Preferences$"] floating enable
+
+smart_borders no_gaps
+smart_gaps on
+gaps inner 10
+gaps outer 0
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id xidlehook --timer 600 'i3lock -c 000000' ''
+exec /home/solus/.xprofile
+exec veracrypt &

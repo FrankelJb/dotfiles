@@ -36,6 +36,9 @@ tray-position = right
 tray-padding = 2
 tray-maxsize = 24
 
+override-redirect = false
+wm-restack = i3
+
 
 [global/wm]
 margin-top = 0
