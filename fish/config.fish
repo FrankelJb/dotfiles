@@ -1,20 +1,3 @@
-if command -v exa > /dev/null
-	abbr -a l "exa"
-	abbr -a ls "exa"
-	abbr -a ll "exa -l"
-	abbr -a lll "exa -la"
-else
-	abbr -a l "ls"
-	abbr -a ll "ls -l"
-	abbr -a lll "ls -la"
-end
-
-if command -v bat > /dev/null
-	alias cat "bat"
-	alias less "bat"
-end
-
-
 # Setup Nix
 set -l nix_profile_path ~/.nix-profile/etc/profile.d/nix.sh
 if test -e $nix_profile_path
@@ -120,4 +103,19 @@ if test -e $nix_profile_path
       and source $file
     end
   end
+end
+if command -v exa > /dev/null
+	abbr -a l "exa"
+	abbr -a ls "exa"
+	abbr -a ll "exa -l"
+	abbr -a lll "exa -la"
+else
+	abbr -a l "ls"
+	abbr -a ll "ls -l"
+	abbr -a lll "ls -la"
+end
+
+if command -v bat > /dev/null
+	abbr -a cat "bat"
+	abbr -a less "bat"
 end

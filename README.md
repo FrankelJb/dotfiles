@@ -1,8 +1,8 @@
 ## Requirements
 
-- alacritty
 - bat
 - exa
 - fd
+- kitty
 - nix
 - xidlehook
