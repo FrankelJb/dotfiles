@@ -3,14 +3,14 @@ set shell=/bin/bash
 let mapleader = "\<Space>"
 
 " auto install plugins
-
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
 
-" Configure backup directory
+" Configure backup, swap, undodir directory
+" <
 if !exists("g:vimdirs_vimhome")
   let g:vimdirs_vimhome = $HOME.'/.config/nvim/'
 endif
@@ -46,19 +46,18 @@ if has("unix") || has("mac")
     set undofile
     set backup
 endif
+" >
 
 " plugins
 if has('nvim')
-  call plug#begin('~/.config/nvim/bundle')
-else
-  call plug#begin('~/.config/vim/bundle')
+  call plug#begin(g:vimdirs_vimhome.'plugged')
 endif
 
-call plug#begin('~/.local/share/nvim/plugged')
 " VIM enhancements
 Plug 'ciaranm/securemodelines'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'justinmk/vim-sneak'
+Plug 'mbbill/undotree'                                            " Undo Tree
 
 " GUI enhancements
 Plug 'itchyny/lightline.vim'
@@ -168,10 +167,6 @@ set nowrap                               " Stop word wrapping
 set wildmenu
 set wildmode=list:longest
 set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
-
-" Permanent undo
-set undodir=~/.vimdid
-set undofile
 
 " Wrapping options
 set formatoptions=tc " wrap text and comments using textwidth

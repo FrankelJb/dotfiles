@@ -104,6 +104,7 @@ if test -e $nix_profile_path
     end
   end
 end
+
 if command -v exa > /dev/null
 	abbr -a l "exa"
 	abbr -a ls "exa"
@@ -118,4 +119,8 @@ end
 if command -v bat > /dev/null
 	abbr -a cat "bat"
 	abbr -a less "bat"
+end
+
+if command -v nvim > /dev/null
+  abbr -a vim "nvim"
 end
