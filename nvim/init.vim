@@ -58,6 +58,7 @@ Plug 'ciaranm/securemodelines'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'                                            " Undo Tree
+Plug 'junegunn/rainbow_parentheses.vim'
 
 " GUI enhancements
 Plug 'itchyny/lightline.vim'
@@ -364,21 +365,6 @@ nnoremap <silent> <space>a  :CocAction<cr>
 let g:indentLine_enabled = 1
 let g:indentLine_char = "⟩"
 
-" Airline settings
-let g:airline_powerline_fonts=1
-
-let g:airline_theme                                       = 'papercolor'
-let g:airline#extensions#whitespace#enabled               = 0
-let g:airline#extensions#hunks#non_zero_only              = 1    " git gutter
-let g:airline#extensions#tabline#enabled                  = 1
-let g:airline#extensions#tabline#fnamemod                 = ':t' " filename only
-let g:airline#extensions#tabline#show_close_button        = 0
-let g:airline#extensions#tabline#show_buffers             = 1
-let g:airline#extensions#tabline#tab_nr_type              = 2    " splits and tab number
-let g:airline#extensions#tabline#switch_buffers_and_tabs  = 0
-let g:airline#extensions#tabline#formatter                = 'unique_tail_improved'
-set laststatus=2
-
 " CtrlP settings
 nnoremap <Leader>p :CtrlP<CR>
 nnoremap <Leader>t :CtrlP<CR>
@@ -386,14 +372,6 @@ nnoremap <Leader>t :CtrlP<CR>
 " Fuzzy searcher
 nnoremap <Leader>fp :Grepper<Space>-query<Space>
 nnoremap <Leader>fb :Grepper<Space>-buffers<Space>-query<Space>-<Space>
-
-" elm-vim Conf
-let g:polyglot_disabled = ['elm']
-let g:elm_detailed_complete = 1
-let g:elm_format_autosave = 1
-
-autocmd BufNewFile,BufRead *.md set spell | set lbr | set nonu
-let g:markdown_fenced_languages = ['html', 'json', 'css', 'javascript', 'elm', 'vim']
 
 set relativenumber
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -472,55 +450,6 @@ map J <Plug>(expand_region_shrink)
 " Remap sneak to f
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
-
-" Use jk insteak of <ESC>
-inoremap jk <esc>
-
-function! ProseMode()
-  call goyo#execute(0, [])
-  set spell noci nosi noai nolist noshowmode noshowcmd
-  set complete+=s
-  set bg=light
-  if !has('gui_running')
-    let g:solarized_termcolors=256
-  endif
-  colors solarized
-endfunction
-
-command! ProseMode call ProseMode()
-
-" Helper function, called below with mappings
-function! HaskellFormat(which) abort
-  if a:which ==# 'hindent' || a:which ==# 'both'
-    :Hindent
-  endif
-  if a:which ==# 'stylish' || a:which ==# 'both'
-    silent! exe 'undojoin'
-    silent! exe 'keepjumps %!stylish-haskell'
-  endif
-endfunction
-
-" Key bindings
-augroup haskellStylish
-  au!
-  " Just hindent
-  au FileType haskell nnoremap <leader>hi :Hindent<CR>
-  " Just stylish-haskell
-  au FileType haskell nnoremap <leader>hs :call HaskellFormat('stylish')<CR>
-  " First hindent, then stylish-haskell
-  au FileType haskell nnoremap <leader>hf :call HaskellFormat('both')<CR>
-augroup END
-
-" ----- w0rp/ale -----
-
-let g:ale_linters.haskell = ['stack-ghc-mod', 'hlint']
-
-" ----- parsonsmatt/intero-neovim -----
-
-" Prefer starting Intero manually (faster startup times)
-let g:intero_start_immediately = 0
-" Use ALE (works even when not using Intero)
-let g:intero_use_neomake = 0
 
 augroup interoMaps
   au!
