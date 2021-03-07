@@ -1,16 +1,17 @@
-if status is-interactive
+# if status is-interactive
+# and not set -q TMUX
+#   # set -g TMUX tmux new-session -d -s base
+#   # eval $TMUX
+#   tmux new -s base
+# else if status is-interactive
+#   tmux new
+# end
+
+if status --is-interactive
 and not set -q TMUX
-  set -g TMUX tmux new-session -d -s base
-  eval $TMUX
-  tmux attach-session -d -t base
+  exec tmux
 end
 
-# include this plugin so nix will work
-# https://github.com/NixOS/nix/issues/1512
-# https://github.com/oh-my-fish/plugin-foreign-env
-set fish_function_path $fish_function_path $HOME/.config/fish/plugin-foreign-env/functions
-# initialize nix
-fenv source '~/.nix-profile/etc/profile.d/nix.sh'
 
 if command -v exa > /dev/null
 	abbr -a l "exa"
@@ -32,7 +33,31 @@ if command -v nvim > /dev/null
   abbr -a vim "nvim"
 end
 
+if command -v pip3 > /dev/null
+  abbr -a pip "pip3"
+end
+
 set -x PATH $HOME/.cargo/bin $PATH
 
 set -x GOPATH $HOME/projects/go
 set -x PATH $GOPATH/bin $PATH
+
+set -x PATH $HOME/.local/bin $PATH
+
+# Google Cloud environment variables
+set -x PROJECT_ID simple-site-287918
+set -x BUCKET_ID simple-site-287918.appspot.com
+
+if command -v yarn > /dev/null
+  set -x PATH (yarn global bin) $PATH
+end
+
+if test -e ~/.cargo-target
+	setenv CARGO_TARGET_DIR ~/.cargo-target
+end
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/beans/storage/google-cloud-sdk/path.fish.inc' ]; . '/home/beans/storage/google-cloud-sdk/path.fish.inc'; end
+
+# Starship
+starship init fish | source
