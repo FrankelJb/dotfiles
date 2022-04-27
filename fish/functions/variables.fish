@@ -1,4 +1,4 @@
-set -x PATH $HOME/.cargo/bin $PATH
+set -x PATH $HOME/.cargo/bin $HOME/.local/bin $PATH
 
 set -x EDITOR nvim
 

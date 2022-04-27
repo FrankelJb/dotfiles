@@ -4,3 +4,4 @@ nvim/temp
 nvim/backup
 nvim/undo
 nvim/plugged
+nvim/autoload

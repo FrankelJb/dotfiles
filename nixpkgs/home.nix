@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 let
-  pkgsUnstable = import <unstable> {};
   user = "beans";
 in {
   # Home Manager needs a bit of information about you and the
@@ -16,21 +15,33 @@ in {
   imports = [
     ./bash.nix
     ./fish.nix
-    ./vscode.nix
+    ./vscodium.nix
+    ./unstable.nix
     ];
 
-  home.packages = with pkgsUnstable; with pkgs; [
+  home.packages = with pkgs; [
     # pkgs
     bat
-    exa
-    fzf
-    niv # Used to generate nix package information
-    ripgrep
-    # pkgsUnstable
+    borgbackup
     bottom
+    cryptomator
+    czkawka
     delta
+    drive
+    exa
     fd
     fishPlugins.fzf-fish
+    fslint
+    fzf
+    neovim
+    nodejs
+    rdfind
+    ripgrep
+    ouch
+    sublime-music
+    tmux
+    ungoogled-chromium
+    yarn
   ];
 
   programs = {

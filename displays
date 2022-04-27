@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+## Author  : Aditya Shakya
+## Mail    : adi1090x@gmail.com
+## Github  : @adi1090x
+## Twitter : @adi1090x
+
+style="$($HOME/.config/rofi/applets/menu/style.sh)"
+
+dir="$HOME/.config/rofi/applets/menu/configs/$style"
+rofi_command="rofi -theme $dir/time.rasi"
+
+both="<=>"
+left="<="
+right="=>"
+options="$both\n$left\n$right"
+
+## Main
+chosen="$(echo -e "$options" | $rofi_command -p "Choose Display Layout" -dmenu -selected-row 1)"
+case $chosen in
+    $both)
+    xrandr --output HDMI-1 --auto --output DP-3 --primary --mode 2560x1080 --rate 144 --left-of HDMI-0
+        ;;
+    $left)
+    xrandr --output HDMI-1 --off --output DP-3 --mode 2560x1080 --rate 144
+        ;;
+    $right)
+    xrandr --output HDMI-1 --auto --output DP-3 --off
+        ;;
+esac

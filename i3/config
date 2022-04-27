@@ -134,6 +134,9 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+workspace $ws1 output DP-1
+workspace $ws2 output DP-1
+
 # switch to workspace
 bindsym $defaultmod+1 workspace $ws1
 bindsym $defaultmod+2 workspace $ws2
@@ -268,7 +271,7 @@ smart_gaps on
 gaps inner 10
 gaps outer 0
 
+# Use capslk as control
+exec_always --no-startup-id xmodmap -e "keycode 66 = Control_L NoSymbol Control_L"
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id xidlehook --timer normal 6 'i3lock -c 000000' ''
-exec /home/solus/.xprofile
-exec veracrypt &

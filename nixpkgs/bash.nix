@@ -8,6 +8,7 @@
       [ -f ~/.fzf.bash ] && source ~/.fzf.bash
       . $HOME/.nix-profile/etc/profile.d/nix.sh
       tmux attach -t 1 || tmux new -s 1
+      # zellij attach || zellij
     '';
     profileExtra = ''
       source /usr/share/defaults/etc/profile

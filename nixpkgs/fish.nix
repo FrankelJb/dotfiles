@@ -15,6 +15,7 @@ in
       ls = "exa";
       lll = "exa -la";
       pip = "pip3";
+      # ssh = "kitty +kitten ssh";
       vim = "nvim";
     };
     interactiveShellInit = concatFileContents ".fish" ../fish/functions;
