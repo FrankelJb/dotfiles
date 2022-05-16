@@ -11,37 +11,40 @@ in {
     username = user;
   };
   news.display = "silent";
+  targets.genericLinux.enable = true;
+  xdg.mime.enable = true;
 
   imports = [
-    ./bash.nix
+    # ./bash.nix
     ./fish.nix
     ./vscodium.nix
-    ./unstable.nix
     ];
 
   home.packages = with pkgs; [
-    # pkgs
     bat
-    borgbackup
     bottom
+    copyq
     cryptomator
     czkawka
-    delta
     drive
     exa
     fd
     fishPlugins.fzf-fish
-    fslint
     fzf
+    jetbrains.idea-community
+    just
     neovim
     nodejs
-    rdfind
     ripgrep
+    rofi
     ouch
-    sublime-music
+    signal-desktop
+    tealdeer
     tmux
     ungoogled-chromium
     yarn
+    yt-dlp
+    zellij
   ];
 
   programs = {
@@ -60,5 +63,5 @@ in {
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.03";
+  home.stateVersion = "21.11";
 }

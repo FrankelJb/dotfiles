@@ -7,6 +7,10 @@ in
 {
   programs.fish = { 
     enable = true;
+    shellAliases = {
+      pbcopy = "xsel --clipboard --input";
+      pbpaste = "xsel --clipboard --output";
+    };
     shellAbbrs = {
       cat = "bat";
       diff = "delta -s";

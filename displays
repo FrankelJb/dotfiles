@@ -19,12 +19,12 @@ options="$both\n$left\n$right"
 chosen="$(echo -e "$options" | $rofi_command -p "Choose Display Layout" -dmenu -selected-row 1)"
 case $chosen in
     $both)
-    xrandr --output HDMI-1 --auto --output DP-3 --primary --mode 2560x1080 --rate 144 --left-of HDMI-0
+    xrandr --output HDMI-0 --auto --output DP-0 --primary --mode 2560x1080 --rate 144 --left-of HDMI-0
         ;;
     $left)
-    xrandr --output HDMI-1 --off --output DP-3 --mode 2560x1080 --rate 144
+    xrandr --output HDMI-0 --off --output DP-0 --mode 2560x1080 --rate 144
         ;;
     $right)
-    xrandr --output HDMI-1 --auto --output DP-3 --off
+    xrandr --output HDMI-0 --auto --output DP-0 --off
         ;;
 esac
