@@ -14,12 +14,15 @@ in
     shellAbbrs = {
       cat = "bat";
       diff = "delta -s";
+      k = "kubectl";
+      ka = "kubectl apply -f";
+      kd = "kubectl delete -f";
       less = "bat";
       l = "exa";
       ls = "exa";
       lll = "exa -la";
       pip = "pip3";
-      # ssh = "kitty +kitten ssh";
+      sshk = "kitty +kitten ssh";
       vim = "nvim";
     };
     interactiveShellInit = concatFileContents ".fish" ../fish/functions;

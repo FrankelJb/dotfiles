@@ -7,6 +7,8 @@
 
     userSettings = {
       "editor.bracketPairColorization.enabled" = true;
+      "explorer.decorations.badges" = true;
+      "explorer.decorations.colors" = true;
       "editor.fontLigatures" = true;
       "editor.fontFamily" = "Fira Code";
       "editor.formatOnSave" = true;
@@ -27,6 +29,7 @@
       }];
       "redhat.telemetry.enabled" = false;
       "rust.build_on_save" = true;
+      "terminal.integrated.fontFamily" = "Fira Code";
       "vim.sneak" = true;
       "vim.sneakUseIgnorecaseAndSmartcase" = true;
       "vim.easymotion" = true;
@@ -45,11 +48,14 @@
       "vim.leader" = "<space>";
       "workbench.colorTheme" = "Dracula";
       "workbench.iconTheme" = "material-icon-theme";
+      "yaml.format.bracketSpacing" = false;
     };
     extensions = (with pkgs.vscode-extensions; [
-        dracula-theme.theme-dracula
+        bungcip.better-toml
         donjayamanne.githistory
+        dracula-theme.theme-dracula
         eamodio.gitlens
+        editorconfig.editorconfig
         gruntfuggly.todo-tree
         james-yu.latex-workshop
         matklad.rust-analyzer
@@ -67,8 +73,13 @@
       }{
         name = "All-Autocomplete";
         publisher = "Atishay-Jain";
-        version = "0.0.23";
-        sha256 = "1ixvh3rrkfr6kvrnj7wvq0skwfjsh9whf4k1rm20wgcibfg1dpj6";
+        version = "0.0.26";
+        sha256 = "sha256-+hYacGYbMeH63xUOepHGAEnHDoCeIhmV8T+vTM9mkbY=";
+      }{
+        name = "vscode-assorted-languages";
+        publisher = "EdwinKofler";
+        version = "0.18.0";
+        sha256 = "gMkifN17VZbwYMsd9pY6gp5N/zXR+lLTHrZamrr0kDo=";
       }
     ];
   };

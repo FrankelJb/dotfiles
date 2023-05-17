@@ -21,30 +21,32 @@ in {
     ];
 
   home.packages = with pkgs; [
+    ansible
     bat
     bottom
     copyq
-    cryptomator
-    czkawka
     drive
     exa
     fd
     fishPlugins.fzf-fish
     fzf
-    jetbrains.idea-community
-    just
+    gitui
+    go-task
+    hexchat
+    ncdu
     neovim
     nodejs
     ripgrep
     rofi
+    rustic-rs
+    soft-serve
     ouch
-    signal-desktop
     tealdeer
-    tmux
+    trippy
     ungoogled-chromium
     yarn
     yt-dlp
-    zellij
+    # zellij
   ];
 
   programs = {
